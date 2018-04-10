@@ -66,22 +66,17 @@ public class PriorityQueue {
 	private int searchPos(int i) {
 		if (queue.size() == 0)
 			return 0;
-		int r = 0;
-		int l = queue.size();
-		int mid = l + (r - l) / 2;
-		while (r >= l) {
-
-			if (queue.get(mid + 1) > i && queue.get(mid - 1) < i)
-				return mid;
-
-			if (queue.get(mid) > i)
+		int r = queue.size() - 1;
+		int l = 0;
+		int mid;
+		while (r <= l) {
+			mid = (l + r) / 2;
+			if (queue.get(mid) < i)
 				r = mid - 1;
-			else if (queue.get(mid) < i)
-				l = mid + 1;
 			else
-				return mid;
+				l = mid + 1;
 		}
-		return mid;
+		return l;
 	}
 
 	@Override
